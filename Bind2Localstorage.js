@@ -34,6 +34,11 @@ app.factory('bind2localstorage', function ($timeout) {
         if (typeof(val) == 'object' && val !== null) {
           val = JSON.stringify(val);
         }
+        
+        if (val === null) {
+          window.localStorage.removeItem(key);
+          return true;
+        }
 
         return window.localStorage.setItem(key, val);
       }
